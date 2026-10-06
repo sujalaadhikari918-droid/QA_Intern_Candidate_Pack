@@ -1,0 +1,18 @@
+{
+  "qaUser": {
+    "email": "intern@example.com",
+    "password": "Intern@123"
+  },
+  "viewer": {
+    "email": "viewer@example.com",
+    "password": "Viewer@123"
+  },
+  "invalidUser": {
+    "email": "user@gmail.com",
+    "password": "User@123"
+  },
+  "taskData": {
+    "taskName": "Test Task",
+    "taskDescription": "This is a test task description."
+  }
+}

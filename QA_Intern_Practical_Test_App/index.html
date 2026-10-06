@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow QA Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section id="loginView" class="auth-card" aria-labelledby="loginTitle">
+      <div class="brand-block">
+        <span class="brand-mark">TF</span>
+        <div><h1 id="loginTitle">TaskFlow</h1><p>QA Internship Practical Application</p></div>
+      </div>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="username" data-testid="login-email" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Enter password" autocomplete="current-password" data-testid="login-password" required />
+        </div>
+        <p id="loginError" class="error" role="alert" aria-live="polite"></p>
+        <button class="primary full" type="submit" data-testid="login-submit">Sign in</button>
+      </form>
+      <div class="demo-credentials">
+        <strong>Exam accounts</strong>
+        <span>QA User: intern@example.com / Intern@123</span>
+        <span>Viewer: viewer@example.com / Viewer@123</span>
+      </div>
+      <button id="resetDemo" class="link-button" type="button" data-testid="reset-demo">Reset demo data</button>
+    </section>
+
+    <section id="dashboardView" class="dashboard hidden" aria-labelledby="pageTitle">
+      <header class="topbar">
+        <div class="brand-block compact"><span class="brand-mark">TF</span><div><strong>TaskFlow</strong><small id="roleBadge"></small></div></div>
+        <div class="user-actions"><span id="userEmail"></span><button id="logoutBtn" class="secondary" data-testid="logout">Logout</button></div>
+      </header>
+
+      <div class="content">
+        <div class="heading-row">
+          <div><h1 id="pageTitle">Tasks</h1><p>Plan, track and complete internship work.</p></div>
+          <button id="addTaskBtn" class="primary" data-testid="add-task">+ Add Task</button>
+        </div>
+
+        <div class="toolbar" aria-label="Task controls">
+          <div class="search-wrap">
+            <input id="searchInput" type="search" placeholder="Search tasks..." data-testid="search" />
+          </div>
+          <div class="filter-wrap">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter" data-testid="status-filter">
+              <option value="All">All</option>
+              <option value="Todo">Todo</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="stats" class="stats"></div>
+        <div id="emptyState" class="empty hidden">No tasks match your search or filter.</div>
+        <div class="table-wrap">
+          <table id="taskTable">
+            <thead><tr><th>Title</th><th>Status</th><th>Priority</th><th>Due date</th><th>Owner</th><th>Actions</th></tr></thead>
+            <tbody id="taskBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="taskDialog" aria-labelledby="dialogTitle">
+    <form id="taskForm" method="dialog">
+      <div class="dialog-head"><h2 id="dialogTitle">Add Task</h2><button id="closeDialog" type="button" class="icon-button" aria-label="Close">×</button></div>
+      <input id="taskId" type="hidden" />
+      <div class="field"><label for="taskTitle">Title *</label><input id="taskTitle" data-testid="task-title" required /><small>3-50 characters</small><p id="titleError" class="error small" role="alert"></p></div>
+      <div class="field"><label for="taskDescription">Description</label><textarea id="taskDescription" rows="3" data-testid="task-description"></textarea><small>Maximum 200 characters</small></div>
+      <div class="grid-2">
+        <div class="field"><label for="taskStatus">Status</label><select id="taskStatus" data-testid="task-status"><option>Todo</option><option>In Progress</option><option>Done</option></select></div>
+        <div class="field"><label for="taskPriority">Priority</label><select id="taskPriority" data-testid="task-priority"><option>Low</option><option selected>Medium</option><option>High</option></select></div>
+      </div>
+      <div class="field"><label for="taskDueDate">Due date *</label><input id="taskDueDate" type="date" data-testid="task-due-date" required /><p id="dateError" class="error small" role="alert"></p></div>
+      <div class="dialog-actions"><button id="cancelTask" type="button" class="secondary">Cancel</button><button type="submit" class="primary" data-testid="save-task">Save Task</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

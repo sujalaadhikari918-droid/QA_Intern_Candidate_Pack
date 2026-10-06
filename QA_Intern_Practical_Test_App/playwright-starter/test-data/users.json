@@ -1,0 +1,4 @@
+{
+  "qaUser": { "email": "intern@example.com", "password": "Intern@123" },
+  "viewer": { "email": "viewer@example.com", "password": "Viewer@123" }
+}
